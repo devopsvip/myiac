@@ -11,6 +11,12 @@ resource "kubernetes_service_v1" "jenkins" {
     port {
       port        = 8080
       target_port = 8080
+      name = "web"
+    }
+    port {
+      port        = 8080
+      target_port = 8080
+      name = "agent"
     }
     type = "ClusterIP"
   }
