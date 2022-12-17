@@ -96,6 +96,7 @@ resource "null_resource" "wait_for_instatll_ingress" {
 
   provisioner "local-exec" {
     command = <<EOF
+      sleep 5  
       kind load  docker-image k8s.gcr.io/ingress-nginx/controller:v1.2.0 --name test-cluster
       kind load  docker-image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1  --name test-cluster
       kubectl create ns ingress-nginx
