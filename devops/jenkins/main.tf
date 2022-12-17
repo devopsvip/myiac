@@ -8,8 +8,8 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
-  insecure       = true
+  config_path = "~/.kube/config"
+  insecure    = true
 }
 
 resource "kubernetes_namespace" "jenkins" {
@@ -51,11 +51,11 @@ resource "kubernetes_deployment_v1" "jenkins" {
 
           port {
             container_port = 8080
-            name = "web"
+            name           = "web"
           }
           port {
             container_port = 50000
-            name = "agent"
+            name           = "agent"
           }
 
           resources {
@@ -73,15 +73,14 @@ resource "kubernetes_deployment_v1" "jenkins" {
               path = "/login"
               port = 8080
             }
-              initial_delay_seconds = 30
-              period_seconds        = 3
+            initial_delay_seconds = 30
+            period_seconds        = 3
           }
         }
         volume {
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim_v1.pvcjenkins.name
+            claim_name = kubernetes_persistent_volume_claim_v1.pvcjenkins.metaname.0.name
           }
-
         }
       }
     }

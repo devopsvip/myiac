@@ -27,6 +27,6 @@ resource "kubernetes_persistent_volume_claim_v1" "pvcjenkins" {
         storage = "20Gi"
       }
     }
-    volume_name = "${kubernetes_persistent_volume_v1.pvjenkins.metadata.0.name}"
+    volume_name = kubernetes_persistent_volume_v1.pvjenkins.metadata.0.name
   }
 }
