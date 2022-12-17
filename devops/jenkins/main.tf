@@ -79,7 +79,7 @@ resource "kubernetes_deployment_v1" "jenkins" {
         }
         volume {
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim_v1.pvcjenkins.metaname.0.name
+            claim_name = kubernetes_persistent_volume_claim_v1.pvcjenkins.metadata.0.name
           }
         }
       }
