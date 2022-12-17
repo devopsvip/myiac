@@ -21,6 +21,7 @@ provider "helm" {
 resource "helm_release" "kube-prometheus-stack" {
   name       = "kube-prometheus-stack"
   chart      = "./kube-prometheus-stack-42.2.1"
+  namespace  = "monitoring"
   depends_on = [null_resource.loaddockerimages]
 }
 
