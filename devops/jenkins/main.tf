@@ -14,7 +14,7 @@ provider "kubernetes" {
 
 resource "kubernetes_namespace" "jenkins" {
   metadata {
-    name = "devops"
+    name = "jenkins"
   }
 }
 
