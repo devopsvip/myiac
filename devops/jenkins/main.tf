@@ -49,6 +49,21 @@ resource "kubernetes_deployment_v1" "jenkins" {
           name              = "jenkins"
           image_pull_policy = "IfNotPresent"
 
+          env {
+            name  = "JENKINS_HOME"
+            value = "/var/lib/jenkins"
+          }
+
+          env {
+            name  = "JENKINS_SLAVE_AGENT_PORT"
+            value = "50000"
+          }
+
+          env {
+            name  = "JENKINS_OPTS"
+            value = "--httpPort=8080"
+          }
+
           port {
             container_port = 8080
             name           = "web"
@@ -76,8 +91,13 @@ resource "kubernetes_deployment_v1" "jenkins" {
             initial_delay_seconds = 30
             period_seconds        = 3
           }
+          volume_mount {
+            name       = "pvc-jenkins"
+            mount_path = "/var/lib/jenkins"
+          }
         }
         volume {
+          name = "pvc-jenkins"
           persistent_volume_claim {
             claim_name = kubernetes_persistent_volume_claim_v1.pvcjenkins.metadata.0.name
           }
