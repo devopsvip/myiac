@@ -20,6 +20,7 @@ resource "kubernetes_persistent_volume_v1" "pvjenkins" {
 resource "kubernetes_persistent_volume_claim_v1" "pvcjenkins" {
   metadata {
     name = "pvc-jenkins"
+    namespace = kubernetes_namespace.jenkins.id
   }
   spec {
     access_modes = ["ReadWriteMany"]
