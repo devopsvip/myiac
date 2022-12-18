@@ -30,6 +30,3 @@ resource "vault_approle_auth_backend_role_secret_id" "jenkinssecret_id" {
   role_name = vault_approle_auth_backend_role.jenkins-app-role.role_name
 }
 
-output "jenkins-secret-id" {
-  value = vault_approle_auth_backend_role_secret_id.jenkinssecret_id.secret_id
-}
