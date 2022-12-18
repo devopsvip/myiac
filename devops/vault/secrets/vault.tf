@@ -16,26 +16,7 @@ provider "vault" {
 
 # Enable K/V v2 secrets engine at 'kv-v2'
 resource "vault_mount" "kv-v2" {
-  path = "kv-v2"
+  path = "devops/secrets"
   type = "kv-v2"
 }
 
-resource "vault_kv_secret_v2" "secret" {
-  mount               = vault_mount.kv-v2.path
-  name                = "secret"
-  cas                 = 1
-  delete_all_versions = true
-  data_json = jsonencode(
-    {
-      zip = "zap",
-      foo = "bar"
-    }
-  )
-}
-
-
-# Create admin policy in the root namespace
-resource "vault_policy" "jenkins_policy" {
-  name   = "jenkins"
-  policy = file("policies/jenkins-policy.hcl")
-}
