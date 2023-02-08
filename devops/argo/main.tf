@@ -21,7 +21,7 @@ resource "kubernetes_namespace" "argo" {
 variable "argocd_manifests" {
   type        = string
   description = "argocd install file"
-  default     = "argocd/v2.6.0/install.yaml"
+  default     = "argocd/v2.6.0/"
 }
 
 resource "null_resource" "wait_for_instatll_ingress" {
@@ -32,7 +32,7 @@ resource "null_resource" "wait_for_instatll_ingress" {
   provisioner "local-exec" {
     command = <<EOF
       sleep 5  
-      kubectl apply -f ${var.argocd_manifests} -n argo
+      kubectl apply -f ${var.argocd_manifests}/install.yaml -n argo
       printf "\nWaiting for the app.kubernetes.io/name=argocd-server...\n"
       kubectl wait --namespace argo \
         --for=condition=ready pod \
@@ -42,4 +42,20 @@ resource "null_resource" "wait_for_instatll_ingress" {
   }
 
   depends_on = [kubernetes_namespace.argo]
+}
+
+
+resource "null_resource" "wait_for_instatll_argo_ingress" {
+  triggers = {
+    key = uuid()
+  }
+
+  provisioner "local-exec" {
+    command = <<EOF
+      sleep 5  
+      kubectl apply -f ${var.argocd_manifests}/ingerss.yaml -n argo
+    EOF
+  }
+
+  depends_on = [null_resource.wait_for_instatll_ingress]
 }
