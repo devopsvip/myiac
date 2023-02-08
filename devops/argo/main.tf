@@ -33,6 +33,11 @@ resource "null_resource" "wait_for_instatll_ingress" {
     command = <<EOF
       sleep 5  
       kubectl apply -f ${var.argocd_manifests} -n argo
+      printf "\nWaiting for the app.kubernetes.io/name=argocd-server...\n"
+      kubectl wait --namespace argo \
+        --for=condition=ready pod \
+	--selector=app.kubernetes.io/name=argocd-server \
+        --timeout=90s
     EOF
   }
 
