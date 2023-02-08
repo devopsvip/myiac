@@ -32,6 +32,8 @@ resource "null_resource" "wait_for_instatll_ingress" {
         --for=condition=ready pod \
 	--selector=app.kubernetes.io/name=argocd-server \
         --timeout=90s
+
+      sleep 20
       kubectl -n argo get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
     EOF
   }
