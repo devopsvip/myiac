@@ -1,3 +1,4 @@
+# terraform用到的providers
 terraform {
   required_providers {
     kind = {
@@ -13,26 +14,31 @@ terraform {
 
 provider "kind" {}
 
+# 此变量指定kubeconfig的文件输出路径
 variable "kind_cluster_config_path" {
   type    = string
   default = "/root/.kube/config"
 
 }
 
+# 此输出会在控制台打印kubeconfig内容
 output "kubeconfig" {
   value = kind_cluster.default.kubeconfig
 }
 
+# 定义k8s集群
 resource "kind_cluster" "default" {
-  name            = "devopscluster"
-  node_image      = "kindest/node:v1.24.0"
-  kubeconfig_path = pathexpand(var.kind_cluster_config_path)
-  wait_for_ready  = true
-
+  name            = "devopscluster"                             # 集群名称
+  node_image      = "kindest/node:v1.24.0"                      # kind镜像
+  kubeconfig_path = pathexpand(var.kind_cluster_config_path)    # kubeconfig路径
+  wait_for_ready  = true  # 等待集群节点ready
+  
+  # kind配置文件
   kind_config {
     kind        = "Cluster"
     api_version = "kind.x-k8s.io/v1alpha4"
-
+    
+    # Control节点配置
     node {
       role = "control-plane"
       kubeadm_config_patches = [
@@ -67,15 +73,20 @@ resource "kind_cluster" "default" {
       }
     }
 
+    # worker 节点2
     node {
       role = "worker"
     }
 
+    # worker 节点2
     node {
       role = "worker"
     }
   }
 }
+
+# null_resource 用于执行shell命令
+# 此步骤用于加载ingress镜像并部署ingress
 resource "null_resource" "wait_for_instatll_ingress" {
   triggers = {
     key = uuid()
