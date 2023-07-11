@@ -24,7 +24,7 @@ output "kubeconfig" {
 }
 
 resource "kind_cluster" "default" {
-  name            = "test-cluster"
+  name            = "devopscluster"
   node_image      = "kindest/node:v1.24.0"
   kubeconfig_path = pathexpand(var.kind_cluster_config_path)
   wait_for_ready  = true
@@ -61,19 +61,6 @@ resource "kind_cluster" "default" {
         container_port = 443
         host_port      = 443
       }
-
-      extra_port_mappings {
-        container_port = 32617
-        host_port      = 32617
-      }
-      extra_port_mappings {
-        container_port = 32607
-        host_port      = 32607
-      }
-      extra_port_mappings {
-        container_port = 30643
-        host_port      = 30643
-      }
       extra_port_mappings {
         container_port = 6443
         host_port      = 6443
@@ -97,14 +84,14 @@ resource "null_resource" "wait_for_instatll_ingress" {
   provisioner "local-exec" {
     command = <<EOF
       sleep 5  
-      kind load  docker-image k8s.gcr.io/ingress-nginx/controller:v1.2.0 --name test-cluster
-      kind load  docker-image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1  --name test-cluster
+      kind load  docker-image k8s.gcr.io/ingress-nginx/controller:v1.2.0 --name devopscluster
+      kind load  docker-image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1  --name devopscluster
       kubectl create ns ingress-nginx
       kubectl apply -f ingress.yaml -n ingress-nginx
       printf "\nWaiting for the nginx ingress controller...\n"
       kubectl wait --namespace ingress-nginx \
         --for=condition=ready pod \
-	--selector=app.kubernetes.io/component=controller \
+	      --selector=app.kubernetes.io/component=controller \
         --timeout=90s
     EOF
   }
