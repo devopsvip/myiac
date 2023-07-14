@@ -1,13 +1,14 @@
-# terraform-devops-tools
-使用Terraform操作Docker部署DevOps工具链
-
-- 需要Docker-CE环境
-- 需要部署Terraform
-- 修改docker主机的配置在main.tf
 
 
 
-## 使用说明
+
+## 功能支持 
+
+- 部署k8s集群 1.24.0 [Done]
+- 部署argoCD 2.6.7 [TODO]
+
+
+## Terraform 使用说明
 
 ```
 terraform init
