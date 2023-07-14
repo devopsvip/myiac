@@ -15,3 +15,9 @@ for image in $images
 do
   kind load  docker-image $image --name devopscluster
 done
+
+
+# Install argocd
+kubectl create ns argocd
+kubectl -n argocd apply -f install.yaml
+kubectl -n argocd apply -f ingress.yaml
