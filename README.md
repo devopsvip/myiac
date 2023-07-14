@@ -1,11 +1,9 @@
 
 
-
-
 ## 功能支持 
 
-- 部署k8s集群 1.24.0 [Done]
-- 部署argoCD 2.6.7 [TODO]
+- 部署k8s集群 1.24.0 [DONE]
+- 部署ArgoCD 2.6.7  [DONE]
 
 
 ## Terraform 使用说明
