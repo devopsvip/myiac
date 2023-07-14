@@ -21,3 +21,9 @@ done
 kubectl create ns argocd
 kubectl -n argocd apply -f install.yaml
 kubectl -n argocd apply -f ingress.yaml
+sleep 3
+kubectl -n argocd get pod 
+kubectl -n argocd get secret
+sleep 5
+# Get password
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d ; echo
