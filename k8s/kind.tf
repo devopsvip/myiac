@@ -18,7 +18,6 @@ provider "kind" {}
 variable "kind_cluster_config_path" {
   type    = string
   default = "/root/.kube/config"
-
 }
 
 # 此输出会在控制台打印kubeconfig内容
@@ -73,7 +72,7 @@ resource "kind_cluster" "default" {
       }
     }
 
-    # worker 节点2
+    # worker 节点1
     node {
       role = "worker"
     }
