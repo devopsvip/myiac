@@ -15,5 +15,7 @@ spec:
     directory:
       recurse: false
   syncPolicy:
+    automated: 
+      prune: true
     syncOptions:
       - CreateNamespace=true
