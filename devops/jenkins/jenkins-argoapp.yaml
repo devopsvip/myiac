@@ -11,7 +11,7 @@ spec:
   source:
     path: devops/jenkins/manifests
     repoURL: https://jihulab.com/devopsvip/myiac.git
-    targetRevision: master
+    targetRevision: main
     directory:
       recurse: false
   syncPolicy:
