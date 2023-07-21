@@ -34,7 +34,7 @@ spec:
               memory: 512Mi
           env:
             - name: JENKINS_URL
-              value: jenkins.jenkins.svc.cluster.local:8080
+              value: http://jenkins.jenkins.svc.cluster.local:8080
             - name: JENKINS_SECRET
               value: 084570525dd4c12755c196b9ee61ab222b82b399e89ccb055f92f2a45a940b91
             - name: JENKINS_AGENT_NAME
