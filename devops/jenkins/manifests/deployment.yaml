@@ -1,0 +1,98 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: jenkins
+  name: jenkins
+  namespace: jenkins
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: jenkins
+  template:
+    metadata:
+      labels:
+        k8s-app: jenkins
+      namespace: jenkins
+      name: jenkins
+    spec:
+      hostAliases:
+      - ip: "192.168.1.200"
+        hostnames:
+          - "updates.jenkins-ci.org"
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins:2.415-jdk11
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: web
+              protocol: TCP
+            - containerPort: 50000
+              name: agent
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /login
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            failureThreshold: 12
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            failureThreshold: 12
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/lib/jenkins
+          env:
+            - name: JENKINS_HOME
+              value: /var/lib/jenkins
+            - name: JENKINS_OPTS 
+              value: --httpPort=8080
+            - name: JENKINS_SLAVE_AGENT_PORT
+              value: "50000"
+      volumes:
+        - name: jenkins-home
+          persistentVolumeClaim:
+            claimName: jenkins
+      serviceAccountName: jenkins
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: jenkins
+  name: jenkins
+  namespace: jenkins
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: jenkins
+  name: jenkins
+  namespace: jenkins
+spec:
+  type: NodePort
+  ports:
+    - name: web
+      port: 8080
+      targetPort: 8080
+    - name: slave
+      port: 50000
+      targetPort: 50000
+  selector:
+    k8s-app: jenkins
