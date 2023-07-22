@@ -3,6 +3,8 @@
 
 - 部署k8s集群 1.24.0 [DONE]
 - 部署ArgoCD 2.6.7  [DONE]
+- 部署Jenkins 2.415-jdk11 [DONE]
+- 部署GitLab [TODO]
 
 
 ## Terraform 使用说明
