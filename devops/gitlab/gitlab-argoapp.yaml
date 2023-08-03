@@ -11,7 +11,7 @@ spec:
   source:
     path: devops/gitlab/manifests
     repoURL: https://jihulab.com/devopsvip/myiac.git
-    targetRevision: main
+    targetRevision: 5-zhun-bei-gitlabceban-ben-de-bu-shu-qing-dan
     directory:
       recurse: false
   syncPolicy:

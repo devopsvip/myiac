@@ -31,9 +31,9 @@ spec:
             - name: GITLAB_SSH_PORT
               value: "22"
             - name: EXTERNAL_URL
-              value: "http://gitlab.gitlab.svc.cluster.local."
+              value: "http://gitlab.idevops.site"
             - name: GITLAB_OMNIBUS_CONFIG
-              value: "external_url 'http://gitlab.gitlab.svc.cluster.local.';"
+              value: "external_url 'http://gitlab.idevops.site';"
           ports:
             - containerPort: 80
               name: web
