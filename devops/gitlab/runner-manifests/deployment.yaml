@@ -30,7 +30,7 @@ spec:
           args:
           - register 
           - --non-interactive
-          - --executor shell
+          # - --executor shell
           - --url http://gitlab.idevops.site
           - --token glrt-ze3S8sEn1hsWvfsejDFt
           - --description devops-runner
