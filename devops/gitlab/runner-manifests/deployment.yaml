@@ -27,16 +27,16 @@ spec:
         - name: gitlab-runner
           image: gitlab/gitlab-runner:alpine-v16.2.0
           imagePullPolicy: IfNotPresent
-          command:
-          - gitlab-runner register 
-          - --non-interactive
-          - --executor shell
-          - --url http://gitlab.idevops.site
-          - --token glrt-ze3S8sEn1hsWvfsejDFt
-          - --description devops-runner
-          - --tag-list build,deploy
-          - --run-untagged=true
-          - --locked=false
+          # command:
+          # - gitlab-runner register 
+          # - --non-interactive
+          # - --executor shell
+          # - --url http://gitlab.idevops.site
+          # - --token glrt-ze3S8sEn1hsWvfsejDFt
+          # - --description devops-runner
+          # - --tag-list build,deploy
+          # - --run-untagged=true
+          # - --locked=false
           ports:
             - containerPort: 80
               name: web
