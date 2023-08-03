@@ -27,8 +27,8 @@ spec:
         - name: gitlab-runner
           image: gitlab/gitlab-runner:alpine-v16.2.0
           imagePullPolicy: IfNotPresent
-          command:
-          - /usr/bin/gitlab-runner register
+          args:
+          - register
           - --url http://gitlab.idevops.site 
           - --token glrt-kBch9Zysraav7Poei4Bd 
           - --executor "shell" 
