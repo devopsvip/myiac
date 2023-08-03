@@ -89,12 +89,10 @@ spec:
   type: NodePort
   ports:
     - name: web
-      port: 30088
-      targetPort: 30088
-      nodePort: 30088
+      port: 80
+      targetPort: 80
     - name: slave
       port: 22
       targetPort: 22
-      nodePort: 30022
   selector:
     k8s-app: gitlab
