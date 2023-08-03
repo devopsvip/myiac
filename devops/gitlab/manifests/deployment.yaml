@@ -1,0 +1,100 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: gitlab
+  name: gitlab
+  namespace: gitlab
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: gitlab
+  template:
+    metadata:
+      labels:
+        k8s-app: gitlab
+      namespace: gitlab
+      name: gitlab
+    spec:
+      containers:
+        - name: gitlab
+          image: gitlab/gitlab-ce:16.2.2-ce.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: web
+              protocol: TCP
+            - containerPort: 22
+              name: agent
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 8Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          # livenessProbe:
+          #   httpGet:
+          #     path: /users/sign_in
+          #     port: 80
+          #   initialDelaySeconds: 60
+          #   timeoutSeconds: 5
+          #   failureThreshold: 12
+          # readinessProbe:
+          #   httpGet:
+          #     path: /users/sign_in
+          #     port: 80
+          #   initialDelaySeconds: 60
+          #   timeoutSeconds: 5
+          #   failureThreshold: 12
+          volumeMounts:
+            - name: gitlab-home
+              mountPath: /etc/gitlab
+              subPath: config
+            - name: gitlab-home
+              mountPath: /var/log/gitlab
+              subPath: logs
+            - name: gitlab-home
+              mountPath: /var/opt/gitlab
+              subPath: data
+          env:
+            - name: gitlab_HOME
+              value: /var/lib/gitlab
+      volumes:
+        - name: gitlab-home
+          persistentVolumeClaim:
+            claimName: gitlab
+      serviceAccountName: gitlab
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: gitlab
+  name: gitlab
+  namespace: gitlab
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: gitlab
+  name: gitlab
+  namespace: gitlab
+spec:
+  type: NodePort
+  ports:
+    - name: web
+      port: 30088
+      targetPort: 30088
+      nodePort: 30088
+    - name: slave
+      port: 22
+      targetPort: 22
+      nodePort: 30022
+  selector:
+    k8s-app: gitlab
