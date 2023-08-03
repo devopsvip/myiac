@@ -27,12 +27,6 @@ spec:
         - name: gitlab-runner
           image: gitlab/gitlab-runner:alpine-v16.2.0
           imagePullPolicy: IfNotPresent
-          args:
-          - register
-          - --url http://gitlab.idevops.site 
-          - --token glrt-kBch9Zysraav7Poei4Bd 
-          - --executor "shell" 
-          - --non-interactive 
           ports:
             - containerPort: 80
               name: web
