@@ -23,12 +23,23 @@ spec:
         - name: gitlab
           image: gitlab/gitlab-ce:16.2.2-ce.0
           imagePullPolicy: IfNotPresent
+          env:
+            - name: GITLAB_HOME
+              value: /var/lib/gitlab
+            - name: GITLAB_PORT
+              value: "80"
+            - name: GITLAB_SSH_PORT
+              value: "22"
+            - name: EXTERNAL_URL
+              value: "http://gitlab.gitlab.svc.cluster.local."
+            - name: GITLAB_OMNIBUS_CONFIG
+              value: "external_url 'http://gitlab.gitlab.svc.cluster.local.';"
           ports:
             - containerPort: 80
               name: web
               protocol: TCP
             - containerPort: 22
-              name: agent
+              name: ssh
               protocol: TCP
           resources:
             limits:
@@ -61,9 +72,6 @@ spec:
             - name: gitlab-home
               mountPath: /var/opt/gitlab
               subPath: data
-          env:
-            - name: gitlab_HOME
-              value: /var/lib/gitlab
       volumes:
         - name: gitlab-home
           persistentVolumeClaim:
