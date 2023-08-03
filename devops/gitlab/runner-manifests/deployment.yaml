@@ -28,8 +28,8 @@ spec:
           image: gitlab/gitlab-runner:alpine-v16.2.0
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
-              name: web
+            - containerPort: 8093
+              name: session
               protocol: TCP
           resources:
             limits:
