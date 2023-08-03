@@ -25,10 +25,10 @@ spec:
           - "gitlab.idevops.site"
       containers:
         - name: gitlab-runner
-          image: registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v11.6.0
+          image: gitlab/gitlab-runner:alpine-v16.2.0
           imagePullPolicy: IfNotPresent
           args:
-          - /usr/bin/gitlab-runner register 
+          - register 
           - --non-interactive
           - --executor shell
           - --url http://gitlab.idevops.site
