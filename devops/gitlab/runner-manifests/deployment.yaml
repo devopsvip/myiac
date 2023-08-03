@@ -1,0 +1,87 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: gitlab-runner
+  name: gitlab-runner
+  namespace: gitlab
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: gitlab-runner
+  template:
+    metadata:
+      labels:
+        k8s-app: gitlab-runner
+      namespace: gitlab
+      name: gitlab-runner
+    spec:
+      containers:
+        - name: gitlab-runner
+          image: registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v11.6.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: web
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 8Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            exec:
+              command: ["/bin/bash", "/configmaps/check-live"]
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command: ["/usr/bin/pgrep","gitlab.*runner"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          volumeMounts:
+            - name: gitlab-runner
+              mountPath: /home/gitlab-runner/.gitlab-runner
+      volumes:
+        - name: gitlab-runner
+          persistentVolumeClaim:
+            claimName: gitlab-runner
+      serviceAccountName: gitlab-runner
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: gitlab-runner
+  name: gitlab-runner
+  namespace: gitlab
+---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   labels:
+#     k8s-app: gitlab
+#   name: gitlab
+#   namespace: gitlab
+# spec:
+#   type: NodePort
+#   ports:
+#     - name: web
+#       port: 80
+#       targetPort: 80
+#     - name: ssh
+#       port: 22
+#       targetPort: 22
+#   selector:
+#     k8s-app: gitlab
