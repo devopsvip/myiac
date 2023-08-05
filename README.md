@@ -18,7 +18,6 @@ terraform apply
 terraform apply -target=docker_container.sonarqube 
 ````
 
-
 ### 部署说明
 
 - Step1 : Deploy Kubernetes cluster

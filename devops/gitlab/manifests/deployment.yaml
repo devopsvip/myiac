@@ -94,7 +94,6 @@ metadata:
   name: gitlab
   namespace: gitlab
 spec:
-  type: NodePort
   ports:
     - name: web
       port: 80

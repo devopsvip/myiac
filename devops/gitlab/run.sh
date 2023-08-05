@@ -1,7 +1,10 @@
 ## NFS
+
+## Gitlab
 mkdir -p /data/storage/kubernetes/gitlab/{config,logs,data}
 chmod 777 -R /data/storage/kubernetes/gitlab/ 
 
+## GitLab Runner
 mkdir -p /data/storage/kubernetes/gitlab-runner
 chmod 777 -R /data/storage/kubernetes/gitlab-runner
 
