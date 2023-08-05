@@ -19,6 +19,10 @@ spec:
       namespace: devops
       name: jenkinsagent
     spec:
+      hostAliases:
+        - ip: "192.168.1.200"
+          hostnames:
+            - "gitlab.idevops.site"
       containers:
         - name: jenkinsagent
           image: jenkins/inbound-agent
