@@ -17,3 +17,11 @@ terraform apply
 # 仅部署某个资源   
 terraform apply -target=docker_container.sonarqube 
 ````
+
+
+### 部署说明
+
+- Step1 : Deploy Kubernetes cluster
+- Step2 : Deploy ArgoCD
+- Step3 : Deploy Jenkins 
+- Step4 : Deploy GitLab
