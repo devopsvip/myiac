@@ -1,0 +1,22 @@
+FROM jenkins/inbound-agent
+USER root
+
+RUN rm -rf /etc/localtime && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo 'Asia/Shanghai' > /etc/timezone
+
+COPY tools/ /tmp
+
+RUN apt update && apt install -y net-tools telnet dnsutils zip unzip curl wget git
+
+RUN tar -C /usr/local/ -zxf /tmp/apache-maven-3.9.1-bin.tar.gz && \
+    unzip -d /usr/local/ /tmp/gradle-7.6.1-bin.zip && \
+    unzip -d /usr/local/ /tmp/sonar-scanner-cli-4.8.0.2856-linux.zip && \
+    mv /tmp/node-v14.16.1-linux-x64 /usr/local/
+
+ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
+    GRADLE_HOME=/usr/local/gradle-7.6.1/  \
+    SONAR_SCANNER_HOME=/usr/local/sonar-scanner-4.8.0.2856-linux \
+    NODE_HOME=/usr/local/node-v14.16.1-linux-x64 \
+    PATH="$NODE_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$SONAR_SCANNER_HOME/bin:$PATH"
+RUN rm -fr /tmp
