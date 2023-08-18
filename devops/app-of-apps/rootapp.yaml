@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://jihulab.com/devopsvip/myiac.git
+    targetRevision: HEAD
+    path: ./devops/app-of-apps/apps
+    # directory
+    directory:
+      recurse: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+     
