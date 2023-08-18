@@ -26,7 +26,7 @@ spec:
       containers:
         - name: jenkinsagent
           #image: jenkins/inbound-agent
-          image: custom-build-agent
+          image: custom-build-agent:v1
           securityContext:
             privileged: true
           imagePullPolicy: IfNotPresent
