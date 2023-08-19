@@ -25,6 +25,9 @@ spec:
       - ip: "192.168.1.200"
         hostnames:
           - "gitlab.idevops.site"
+      - ip: "192.168.1.200"
+        hostnames:
+          - "sonar.idevops.site"
       containers:
         - name: jenkins
           image: jenkins/jenkins:2.415-jdk11
@@ -39,7 +42,7 @@ spec:
           resources:
             limits:
               cpu: 1000m
-              memory: 2Gi
+              memory: 3Gi
             requests:
               cpu: 500m
               memory: 512Mi
