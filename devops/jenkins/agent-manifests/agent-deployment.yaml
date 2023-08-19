@@ -25,8 +25,8 @@ spec:
             - "gitlab.idevops.site"
       containers:
         - name: jenkinsagent
-          image: jenkins/inbound-agent
-          #image: custom-build-agent:v1
+          #image: jenkins/inbound-agent
+          image: custom-build-agent:v1
           securityContext:
             privileged: true
           imagePullPolicy: IfNotPresent
