@@ -22,6 +22,9 @@ spec:
       - ip: "192.168.1.200"
         hostnames:
           - "updates.jenkins-ci.org"
+      - ip: "192.168.1.200"
+          hostnames:
+            - "gitlab.idevops.site"
       containers:
         - name: jenkins
           image: jenkins/jenkins:2.415-jdk11
