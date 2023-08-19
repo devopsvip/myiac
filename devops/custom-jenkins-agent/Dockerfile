@@ -18,5 +18,5 @@ ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
     GRADLE_HOME=/usr/local/gradle-7.6.1/  \
     SONAR_SCANNER_HOME=/usr/local/sonar-scanner-4.8.0.2856-linux \
     NODE_HOME=/usr/local/node-v14.16.1-linux-x64 \
-    PATH="$NODE_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$SONAR_SCANNER_HOME/bin:$PATH"
+    PATH="/usr/local/node-v14.16.1-linux-x64/bin:/usr/local/apache-maven-3.9.1/bin:/usr/local/gradle-7.6.1/bin:/usr/local/sonar-scanner-4.8.0.2856-linux/bin:$PATH"
 RUN rm -fr /tmp
