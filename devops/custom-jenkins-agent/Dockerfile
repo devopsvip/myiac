@@ -12,11 +12,13 @@ RUN apt update && apt install -y net-tools telnet dnsutils zip unzip curl wget g
 RUN tar -C /usr/local/ -zxf /tmp/apache-maven-3.9.1-bin.tar.gz && \
     unzip -d /usr/local/ /tmp/gradle-7.6.1-bin.zip && \
     unzip -d /usr/local/ /tmp/sonar-scanner-cli-4.8.0.2856-linux.zip && \
-    mv /tmp/node-v14.16.1-linux-x64 /usr/local/
+    mv /tmp/node-v14.16.1-linux-x64 /usr/local/ && \
+    npm config set registry https://registry.npm.taobao.org && \
+    npm install -g yarn
 
 ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
     GRADLE_HOME=/usr/local/gradle-7.6.1/  \
     SONAR_SCANNER_HOME=/usr/local/sonar-scanner-4.8.0.2856-linux \
     NODE_HOME=/usr/local/node-v14.16.1-linux-x64 \
     PATH="/usr/local/node-v14.16.1-linux-x64/bin:/usr/local/apache-maven-3.9.1/bin:/usr/local/gradle-7.6.1/bin:/usr/local/sonar-scanner-4.8.0.2856-linux/bin:$PATH"
-RUN rm -fr /tmp
+RUN rm -fr /tmp/*
