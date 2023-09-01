@@ -1,7 +1,7 @@
 ## NFS
 
 ## sonarqube
-mkdir -p /data/storage/kubernetes/sonarqube/{conf,logs,data,extensions,lib}
+mkdir -p /data/storage/kubernetes/sonarqube/{conf,logs,data,extensions}
 chmod 777 -R /data/storage/kubernetes/sonarqube/
 
 ## Docker images
