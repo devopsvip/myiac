@@ -21,5 +21,5 @@ ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
     PATH="/usr/local/node-v14.16.1-linux-x64/bin:/usr/local/apache-maven-3.9.1/bin:/usr/local/gradle-7.6.1/bin:/usr/local/sonar-scanner-4.8.0.2856-linux/bin:$PATH"
 
 RUN npm config set registry https://registry.npm.taobao.org && \
-    npm install -g yarn \
+    npm install -g yarn && \
     rm -fr /tmp/* 
