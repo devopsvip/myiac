@@ -47,9 +47,9 @@ spec:
             - name: sonarqube-home
               mountPath: /opt/sonarqube/extensions
               subPath: extensions
-            - name: sonarqube-home
-              mountPath: /opt/sonarqube/lib
-              subPath: lib
+            # - name: sonarqube-home
+            #   mountPath: /opt/sonarqube/lib
+            #   subPath: lib
       volumes:
         - name: sonarqube-home
           persistentVolumeClaim:
