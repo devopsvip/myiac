@@ -1,0 +1,80 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: sonarqube
+  name: sonarqube
+  namespace: sonarqube
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: sonarqube
+  template:
+    metadata:
+      labels:
+        k8s-app: sonarqube
+      namespace: devops
+      name: sonarqube
+    spec:
+      containers:
+        - name: sonarqube
+          image: sonarqube:9.9.0-community
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9000
+              name: web
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 4Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          volumeMounts:
+            - name: sonarqube-home
+              mountPath: /opt/sonarqube/conf
+              subPath: conf
+            - name: sonarqube-home
+              mountPath: /opt/sonarqube/logs
+              subPath: logs
+            - name: sonarqube-home
+              mountPath: /opt/sonarqube/data
+              subPath: data
+            - name: sonarqube-home
+              mountPath: /opt/sonarqube/extensions
+              subPath: extensions
+            - name: sonarqube-home
+              mountPath: /opt/sonarqube/lib
+              subPath: lib
+      volumes:
+        - name: sonarqube-home
+          persistentVolumeClaim:
+            claimName: sonarqube
+      serviceAccountName: sonarqube
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: sonarqube
+  name: sonarqube
+  namespace: sonarqube
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: sonarqube
+  name: sonarqube
+  namespace: sonarqube
+spec:
+  ports:
+    - name: web
+      port: 9000
+      targetPort: 9000
+  selector:
+    k8s-app: sonarqube
