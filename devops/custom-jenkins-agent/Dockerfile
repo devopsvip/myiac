@@ -12,7 +12,7 @@ RUN apt update && apt install -y net-tools telnet dnsutils zip unzip curl wget g
 RUN tar -C /usr/local/ -zxf /tmp/apache-maven-3.9.1-bin.tar.gz && \
     unzip -d /usr/local/ /tmp/gradle-7.6.1-bin.zip && \
     unzip -d /usr/local/ /tmp/sonar-scanner-cli-4.8.0.2856-linux.zip && \
-    tar -C /usr/local/ -xJf node-v14.16.1-linux-x64.tar.xz  
+    tar -C /usr/local/ -xJf /tmp/node-v14.16.1-linux-x64.tar.xz  
 
 ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
     GRADLE_HOME=/usr/local/gradle-7.6.1/  \
