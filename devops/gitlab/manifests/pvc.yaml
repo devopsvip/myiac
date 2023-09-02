@@ -30,6 +30,6 @@ spec:
     requests:
       storage: 20Gi
   storageClassName: ""
-    selector:
+  selector:
     matchLabels:
       app: gitlab
