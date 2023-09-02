@@ -6,3 +6,6 @@ kind load  docker-image gitlab/gitlab-runner:alpine-v16.2.0 --name devopscluster
 
 # This image is custom build by myself
 kind load  docker-image custom-build-agent:v1 --name devopscluster
+
+# sonarqube
+kind load  docker-image sonarqube:9.9.0-community --name devopscluster
