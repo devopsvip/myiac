@@ -9,3 +9,6 @@ kind load  docker-image custom-build-agent:v1 --name devopscluster
 
 # sonarqube
 kind load  docker-image sonarqube:9.9.0-community --name devopscluster
+
+# nexus
+kind load  docker-image sonatype/nexus3:3.60.0 --name devopscluster
