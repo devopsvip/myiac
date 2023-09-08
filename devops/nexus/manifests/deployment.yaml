@@ -1,0 +1,67 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: nexus
+  name: nexus
+  namespace: nexus
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: nexus
+  template:
+    metadata:
+      labels:
+        k8s-app: nexus
+      namespace: nexus
+      name: nexus
+    spec:
+      containers:
+        - name: nexus
+          image: sonatype/nexus3:3.60.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+              name: web
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 4Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          volumeMounts:
+            - name: nexus-home
+              mountPath: /nexus-data
+      volumes:
+        - name: nexus-home
+          persistentVolumeClaim:
+            claimName: nexus
+      serviceAccountName: nexus
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: nexus
+  name: nexus
+  namespace: nexus
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: nexus
+  name: nexus
+  namespace: nexus
+spec:
+  ports:
+    - name: web
+      port: 8081
+      targetPort: 8081
+  selector:
+    k8s-app: nexus
