@@ -26,6 +26,9 @@ spec:
         - ip: "192.168.1.200"
           hostnames:
             - "sonar.idevops.site"
+        - ip: "192.168.1.200"
+          hostnames:
+            - "nexus.idevops.site"
       containers:
         - name: jenkinsagent
           #image: jenkins/inbound-agent
