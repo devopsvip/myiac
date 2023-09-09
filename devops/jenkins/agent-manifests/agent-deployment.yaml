@@ -52,3 +52,10 @@ spec:
               value: build01
             - name: JENKINS_AGENT_WORKDIR
               value: /home/jenkins/workspace
+          volumeMounts:
+            - name: jenkins-build-cache
+              mountPath: /home/jenkins/jenkins-build-cache
+      volumes:
+        - name: jenkins-build-cache
+          persistentVolumeClaim:
+            claimName: jenkins-build-cache

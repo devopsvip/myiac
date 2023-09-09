@@ -5,3 +5,12 @@ kind load  docker-image jenkins/inbound-agent:latest --name devopscluster
 
 ## ArgoAPP
 kubectl -n argocd apply -f jenkins-argoapp.yaml 
+
+
+##jenkins
+mkdir -p /data/storage/kubernetes/jenkins
+chmod -R 777 /data/storage/kubernetes/jenkins
+
+## Jenkins build cache
+mkdir -p /data/storage/kubernetes/jenkins-build-cache
+chmod -R 777 /data/storage/kubernetes/jenkins-build-cache
