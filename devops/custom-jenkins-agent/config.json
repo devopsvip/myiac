@@ -1,0 +1,7 @@
+{
+    "auths": {
+      "ccr.ccs.tencentyun.com": {
+        "auth": "<Your Login user:passwd base64>"
+      }
+    }
+  }
