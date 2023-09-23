@@ -8,9 +8,10 @@ RUN rm -rf /etc/localtime && \
 
 COPY tools/ /tmp
 COPY --from=kaniko /kaniko /kaniko
-COPY sources.list /etc/apt/sources.list
 
-RUN apt update && apt install -y xz-utils net-tools telnet dnsutils zip unzip curl wget git
+RUN rm -fr /etc/apt/sources.list && \
+    mv /tmp/sources.list /etc/apt/sources.list && \
+    apt update && apt install -y xz-utils net-tools telnet dnsutils zip unzip curl wget git
 
 RUN tar -C /usr/local/ -zxf /tmp/apache-maven-3.9.1-bin.tar.gz && \
     unzip -d /usr/local/ /tmp/gradle-7.6.1-bin.zip && \
