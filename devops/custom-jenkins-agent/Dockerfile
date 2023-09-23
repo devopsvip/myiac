@@ -8,6 +8,7 @@ RUN rm -rf /etc/localtime && \
 
 COPY tools/ /tmp
 COPY --from=kaniko /kaniko /kaniko
+COPY sources.list /etc/apt/sources.list
 
 RUN apt update && apt install -y xz-utils net-tools telnet dnsutils zip unzip curl wget git
 
