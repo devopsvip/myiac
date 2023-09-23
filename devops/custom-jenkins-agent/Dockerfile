@@ -23,6 +23,13 @@ ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
     NODE_HOME=/usr/local/node-v14.16.1-linux-x64 \
     PATH="/kaniko:/usr/local/node-v14.16.1-linux-x64/bin:/usr/local/apache-maven-3.9.1/bin:/usr/local/gradle-7.6.1/bin:/usr/local/sonar-scanner-4.8.0.2856-linux/bin:$PATH"
 
+RUN curl -LO https://dl.k8s.io/release/v1.24.0/bin/linux/amd64/kubectl && \
+    chmod +x kubectl && mv kubectl /usr/bin/kubectl && \
+    wget https://get.helm.sh/helm-v3.13.0-rc.1-linux-amd64.tar.gz && \
+    tar -zxf helm-v3.13.0-rc.1-linux-amd64.tar.gz && \
+    mv linux-amd64/helm /usr/bin/helm && \
+    chmod +x /usr/bin/helm && rm -fr linux-amd64
+
 RUN npm config set registry https://registry.npm.taobao.org && \
     npm install -g yarn && \
     rm -fr /tmp/* 
