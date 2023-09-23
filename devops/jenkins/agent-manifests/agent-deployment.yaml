@@ -32,7 +32,7 @@ spec:
       containers:
         - name: jenkinsagent
           #image: jenkins/inbound-agent
-          image: custom-build-agent:v1
+          image: custom-build-agent:v2
           securityContext:
             privileged: true
           imagePullPolicy: IfNotPresent
