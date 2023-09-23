@@ -25,7 +25,7 @@ ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
 
 RUN curl -LO https://dl.k8s.io/release/v1.24.0/bin/linux/amd64/kubectl && \
     chmod +x kubectl && mv kubectl /usr/bin/kubectl && \
-    curl -LO https://get.helm.sh/helm-v3.13.0-rc.1-linux-amd64.tar.gz && \
+    wget https://get.helm.sh/helm-v3.13.0-rc.1-linux-amd64.tar.gz && \
     tar -zxf helm-v3.13.0-rc.1-linux-amd64.tar.gz && \
     mv linux-amd64/helm /usr/bin/helm && \
     chmod +x /usr/bin/helm && rm -fr linux-amd64
