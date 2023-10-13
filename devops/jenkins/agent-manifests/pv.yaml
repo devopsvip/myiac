@@ -33,3 +33,39 @@ spec:
   selector:
     matchLabels:
       app: jenkins-build-cache
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins-workspace
+  labels:
+    app: jenkins-workspace
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  # mountOptions:
+  #   - hard
+  #   - nfsvers=4.1
+  nfs:
+    path: /data/storage/kubernetes/jenkins-workspace
+    server: 192.168.1.200
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-workspace
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: ""
+  selector:
+    matchLabels:
+      app: jenkins-workspace

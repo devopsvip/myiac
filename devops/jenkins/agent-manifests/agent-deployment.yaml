@@ -55,7 +55,12 @@ spec:
           volumeMounts:
             - name: jenkins-build-cache
               mountPath: /home/jenkins/jenkins-build-cache
+            - name: jenkins-workspace
+              mountPath: /home/jenkins/workspace
       volumes:
         - name: jenkins-build-cache
           persistentVolumeClaim:
             claimName: jenkins-build-cache
+        - name: jenkins-workspace
+          persistentVolumeClaim:
+            claimName: jenkins-workspace
