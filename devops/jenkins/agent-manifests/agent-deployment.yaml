@@ -31,8 +31,8 @@ spec:
             - "nexus.idevops.site"
       containers:
         - name: jenkinsagent
-          #image: jenkins/inbound-agent
-          image: custom-build-agent:v2
+          image: jenkins/inbound-agent
+          #image: custom-build-agent:v2
           securityContext:
             privileged: true
           imagePullPolicy: IfNotPresent
@@ -47,9 +47,9 @@ spec:
             - name: JENKINS_URL
               value: http://jenkins.jenkins.svc.cluster.local:8080
             - name: JENKINS_SECRET
-              value: 084570525dd4c12755c196b9ee61ab222b82b399e89ccb055f92f2a45a940b91
+              value: 8e821116dc808b750a8328fd2b20b1c12a4385c60215403218182a69eecba52a
             - name: JENKINS_AGENT_NAME
-              value: build01
+              value: build
             - name: JENKINS_AGENT_WORKDIR
               value: /home/jenkins/workspace
           volumeMounts:
