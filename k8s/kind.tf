@@ -17,7 +17,7 @@ provider "kind" {}
 # 此变量指定kubeconfig的文件输出路径
 variable "kind_cluster_config_path" {
   type    = string
-  default = "/root/.kube/config"
+  default = "~/.kube/config"
 }
 
 # 此输出会在控制台打印kubeconfig内容
