@@ -6,8 +6,8 @@
 - 部署Jenkins 2.415-jdk11 [DONE]
 - 部署GitLab [DONE]
 - 自定义Jenkins Agent镜像Dockerfile [DONE]
-- 部署SonarQube LTS [TODO]
-- 部署Nexus3 LTS [TODO]
+- 部署SonarQube LTS []
+- 部署Nexus3 LTS [DONE]
 
 
 ## Terraform 使用说明
