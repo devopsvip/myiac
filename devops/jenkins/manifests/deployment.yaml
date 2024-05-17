@@ -33,7 +33,7 @@ spec:
           - "nexus.idevops.site"
       containers:
         - name: jenkins
-          image: jenkins/jenkins:2.452.1-lts-jdk11
+          image: jenkins/jenkins:2.415-jdk11
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
