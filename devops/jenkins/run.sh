@@ -11,8 +11,6 @@ chmod -R 777 /data/storage/kubernetes/jenkins
 kubectl -n argocd apply -f jenkins-argoapp.yaml 
 
 
-
-
 ## Jenkins build cache
 mkdir -p /data/storage/kubernetes/jenkins-build-cache
 chmod -R 777 /data/storage/kubernetes/jenkins-build-cache
