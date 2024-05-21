@@ -70,16 +70,28 @@ resource "kind_cluster" "default" {
         container_port = 6443
         host_port      = 6443
       }
+      extra_mounts {
+        host_path = "./resolv.conf"
+        container_path = "/etc/resolv.conf"
+      }
     }
 
     # worker 节点1
     node {
       role = "worker"
+      extra_mounts {
+        host_path = "./resolv.conf"
+        container_path = "/etc/resolv.conf"
+      }
     }
 
     # worker 节点2
     node {
       role = "worker"
+      extra_mounts {
+        host_path = "./resolv.conf"
+        container_path = "/etc/resolv.conf"
+      }
     }
   }
 }
