@@ -4,7 +4,7 @@ USER root
 
 RUN rm -rf /etc/localtime && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    echo 'Asia/Shanghai' > /etc/timezone
+    echo 'Asia/Shanghai' > /etc/timezone && rm -rf /var/mail /var/spool/mail  #fix kaniko https://github.com/GoogleContainerTools/kaniko/issues/2214
 
 COPY tools/ /tmp
 COPY --from=kaniko /kaniko /kaniko
