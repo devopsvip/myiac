@@ -12,3 +12,6 @@ kind load  docker-image sonarqube:9.9.0-community --name devopscluster
 
 # nexus
 kind load  docker-image sonatype/nexus3:3.60.0 --name devopscluster
+
+# base docker image for ci 
+kind load  docker-image ccr.ccs.tencentyun.com/devopsvip/dragonwell:21-anolis --name devopscluster
