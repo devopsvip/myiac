@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: devops/nexus/manifests
-    repoURL: https://jihulab.com/devopsvip/myiac.git
+    repoURL: https://jihulab.com/devopsvvip/myiac.git
     targetRevision: main
     directory:
       recurse: false

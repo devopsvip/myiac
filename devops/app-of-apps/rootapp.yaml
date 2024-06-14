@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://jihulab.com/devopsvip/myiac.git
+    repoURL: https://jihulab.com/devopsvvip/myiac.git
     targetRevision: HEAD
     path: ./devops/app-of-apps/apps
     # directory
