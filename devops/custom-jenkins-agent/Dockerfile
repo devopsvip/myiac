@@ -1,5 +1,5 @@
 FROM ccr.ccs.tencentyun.com/devopsvip/executor:v1.15.0-debug AS kaniko
-FROM ccr.ccs.tencentyun.com/devopsvip/inbound-agent:latest-jdk17
+FROM jenkins/inbound-agent
 USER root
 
 RUN rm -rf /etc/localtime && \
@@ -15,7 +15,8 @@ RUN apt update && apt install -y xz-utils net-tools telnet dnsutils zip unzip cu
 RUN tar -C /usr/local/ -zxf /tmp/apache-maven-3.9.1-bin.tar.gz && \
     unzip -d /usr/local/ /tmp/gradle-7.6.1-bin.zip && \
     unzip -d /usr/local/ /tmp/sonar-scanner-cli-4.8.0.2856-linux.zip && \
-    tar -C /usr/local/ -xJf /tmp/node-v20.13.1-linux-x64.tar.xz
+    tar -C /usr/local/ -xJf /tmp/node-v20.13.1-linux-x64.tar.xz && \
+    tar -C /usr/local/ -zxf /tmp/OpenJDK17U-jdk_x64_linux_hotspot_17.0.11_9.tar.gz
 
 ENV M2_HOME=/usr/local/apache-maven-3.9.1 \
     GRADLE_HOME=/usr/local/gradle-7.6.1/  \
