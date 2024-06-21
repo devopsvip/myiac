@@ -1,7 +1,9 @@
-
+## Get Docker images
+docker pull ccr.ccs.tencentyun.com/devopsvip/jenkins:2.415-jdk11
+docker pull ccr.ccs.tencentyun.com/devopsvip/inbound-agent:latest-jdk11
 ## LoadDockerImage
-kind load  docker-image jenkins/jenkins:2.415-jdk11 --name devopscluster
-kind load  docker-image jenkins/inbound-agent:latest --name devopscluster
+kind load  docker-image ccr.ccs.tencentyun.com/devopsvip/jenkins:2.415-jdk11 --name devopscluster
+kind load  docker-image ccr.ccs.tencentyun.com/devopsvip/inbound-agent:latest-jdk11 --name devopscluster
 
 ##jenkins
 mkdir -p /data/storage/kubernetes/jenkins

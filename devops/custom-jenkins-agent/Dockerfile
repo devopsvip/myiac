@@ -1,5 +1,5 @@
 FROM ccr.ccs.tencentyun.com/devopsvip/executor:v1.15.0-debug AS kaniko
-FROM jenkins/inbound-agent
+FROM ccr.ccs.tencentyun.com/devopsvip/inbound-agent:latest-jdk11
 USER root
 
 RUN rm -rf /etc/localtime && \

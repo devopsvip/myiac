@@ -31,7 +31,7 @@ spec:
             - "nexus.idevops.site"
       containers:
         - name: jenkinsagent
-          #image: jenkins/inbound-agent
+          #image: ccr.ccs.tencentyun.com/devopsvip/inbound-agent:latest-jdk11
           image: custom-build-agent:v2
           securityContext:
             privileged: true

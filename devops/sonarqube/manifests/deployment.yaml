@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: sonarqube
-          image: sonarqube:9.9.0-community
+          image: ccr.ccs.tencentyun.com/devopsvip/sonarqube:9.9.0-community
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000

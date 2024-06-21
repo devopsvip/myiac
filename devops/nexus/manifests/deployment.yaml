@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: nexus
-          image: sonatype/nexus3:3.60.0
+          image: ccr.ccs.tencentyun.com/devopsvip/nexus3:3.60.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
