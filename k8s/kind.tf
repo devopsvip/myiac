@@ -28,7 +28,7 @@ output "kubeconfig" {
 # 定义k8s集群
 resource "kind_cluster" "default" {
   name            = "devopscluster"                             # 集群名称
-  node_image      = "kindest/node:v1.24.0"                      # kind镜像
+  node_image      = "ccr.ccs.tencentyun.com/devopsvip/kind:v1.24.0"   #kindest/node:v1.24.0 kind镜像
   kubeconfig_path = pathexpand(var.kind_cluster_config_path)    # kubeconfig路径
   wait_for_ready  = true  # 等待集群节点ready
   
@@ -106,8 +106,11 @@ resource "null_resource" "wait_for_instatll_ingress" {
   provisioner "local-exec" {
     command = <<EOF
       sleep 5  
-      kind load  docker-image k8s.gcr.io/ingress-nginx/controller:v1.2.0 --name devopscluster
-      kind load  docker-image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1  --name devopscluster
+      #kind load  docker-image k8s.gcr.io/ingress-nginx/controller:v1.2.0 --name devopscluster
+      #kind load  docker-image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1  --name devopscluster
+      kind load docker-image ccr.ccs.tencentyun.com/devopsvip/kube-webhook-certgen:v1.1.1 --name devopscluster
+      kind load docker-image ccr.ccs.tencentyun.com/devopsvip/controller:v1.2.0 --name devopscluster
+      
       kubectl create ns ingress-nginx
       kubectl apply -f ingress.yaml -n ingress-nginx
       printf "\nWaiting for the nginx ingress controller...\n"

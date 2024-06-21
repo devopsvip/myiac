@@ -4,9 +4,13 @@
 ## Deploy K8s cluster
 
 dockerimages:
-- kindest/node:v1.24.0
-- k8s.gcr.io/ingress-nginx/controller:v1.2.0
-- k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+
+```
+docker pull ccr.ccs.tencentyun.com/devopsvip/kind:v1.24.0
+docker pull ccr.ccs.tencentyun.com/devopsvip/kube-webhook-certgen:v1.1.1
+docker pull ccr.ccs.tencentyun.com/devopsvip/controller:v1.2.0
+
+```
 
 ```bash
 # install
