@@ -9,21 +9,51 @@
 - 部署SonarQube LTS []
 - 部署Nexus3 LTS [DONE]
 
-
-## Terraform 使用说明
+## Deploy k8s cluster 
 
 ```
-terraform init
-terraform plan
-terraform apply 
+cd k8s 
 
-# 仅部署某个资源   
-terraform apply -target=docker_container.sonarqube 
-````
+# Terraform init and apply 
+terraform init 
+terraform apply --auto-approve 
 
-### 部署说明
+# if deploy failed. please check k8s/resolv.conf;
+# you need to update first dns server in file k8s/resolv.conf;
+docker network list #  you will find docker network named kind;
+docker network inspect kind # get gateway ipaddress then replace first dns server in file k8s/resolv.conf
 
-- Step1 : Deploy Kubernetes cluster
-- Step2 : Deploy ArgoCD
-- Step3 : Deploy Jenkins 
-- Step4 : Deploy GitLab
+# Terraform apply again
+terraform apply --auto-approve 
+
+# If ok
+kubectl get nodes
+
+```
+
+## Deploy argocd in k8s
+
+notice: Please update your local machine /etc/hosts file. add ` k8s_cluster_local_hostip argocd.idevops.site`
+
+```
+cd devops/argocd
+sh -x run.sh
+
+# if deploy success, access https://argocd.idevops.site 
+
+```
+
+## Deploy all apps 
+notice: Must first to deploy argocd.
+notice: Please update your /etc/hosts file. add 
+- ` k8s_cluster_local_hostip gitlab.idevops.site`
+- ` k8s_cluster_local_hostip jenkins.idevops.site`
+- ` k8s_cluster_local_hostip sonar.idevops.site`
+- ` k8s_cluster_local_hostip nexus.idevops.site`
+notice: Argocd use remote git repo apps manifests, so if you need update,please update files from remote git repo.
+
+```
+cd devops/app-of-apps
+sh -x init-all.sh
+kubectl apply -f rootapp.yaml -n argocd
+```
