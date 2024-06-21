@@ -9,6 +9,16 @@
 - 部署SonarQube LTS []
 - 部署Nexus3 LTS [DONE]
 
+## 目录结构
+
+```
+cicd   #Use terraform & docker to deploy apps [SKIP];
+devops-tf #Use terraform & kubernetes to deploy apps;
+k8s #User terraform & kind to deploy k8s cluster in local;
+terraform-plugin-cache #terraform local cache;
+devops #Use argocd to deploy devops tools; 
+```
+
 ## Deploy k8s cluster 
 
 ```
