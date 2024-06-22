@@ -32,7 +32,7 @@ spec:
       containers:
         - name: jenkinsagent
           #image: ccr.ccs.tencentyun.com/devopsvip/inbound-agent:latest-jdk11
-          image: custom-build-agent:v2
+          image: ccr.ccs.tencentyun.com/devopsvip/custom-build-agent:v2
           securityContext:
             privileged: true
           imagePullPolicy: IfNotPresent

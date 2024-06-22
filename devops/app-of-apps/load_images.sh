@@ -8,7 +8,7 @@ kind load  docker-image ccr.ccs.tencentyun.com/devopsvip/inbound-agent:latest-jd
 
 # This jenkins agent image is custom build by myself local environment
 #[TODO] after course end then upload image to tencent tcr. 
-kind load  docker-image custom-build-agent:v2 --name devopscluster
+kind load  docker-image ccr.ccs.tencentyun.com/devopsvip/custom-build-agent:v2 --name devopscluster
 
 # sonarqube
 kind load  docker-image ccr.ccs.tencentyun.com/devopsvip/sonarqube:9.9.0-community --name devopscluster

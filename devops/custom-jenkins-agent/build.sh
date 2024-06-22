@@ -1,3 +1,3 @@
-docker build -t custom-build-agent:v1 . 
+docker build -t ccr.ccs.tencentyun.com/devopsvip/custom-build-agent:v2 . 
 
-kind load  docker-image custom-build-agent:v1 --name devopscluster
+kind load  docker-image ccr.ccs.tencentyun.com/devopsvip/custom-build-agent:v2 --name devopscluster
