@@ -1,3 +1,28 @@
+
+
+# 部署方式
+
+docker镜像
+
+```
+docker pull ccr.ccs.tencentyun.com/devopsvip/busybox:1.30
+docker pull ccr.ccs.tencentyun.com/devopsvip/elasticsearch:7.5.1
+docker pull ccr.ccs.tencentyun.com/devopsvip/skywalking-oap-server:9.2.0
+docker pull ccr.ccs.tencentyun.com/devopsvip/skywalking-ui:9.2.0
+```
+
+```
+helm upgrade --install skywalking \
+./skywalking/ \
+-n skywalking  \
+--create-namespace \
+-f ./skywalking/values.yaml \
+-f ./skywalking/values-es7.yaml
+```
+
+---
+
+
 # Apache Skywalking Helm Chart
 
 [Apache SkyWalking](https://skywalking.apache.org/) is application performance monitor tool for distributed systems, especially designed for microservices, cloud native and container-based (Docker, K8s, Mesos) architectures.
