@@ -11,6 +11,7 @@ spec:
     path: 'logging/fluentbit'
     helm:
       releaseName: fluentbit
+      version: v3
       valueFiles:
         - values.yaml
         - fluentbit-values.yaml

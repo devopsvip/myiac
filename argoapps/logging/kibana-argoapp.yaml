@@ -11,6 +11,7 @@ spec:
     path: 'logging/kibana'
     helm:
       releaseName: kibana
+      version: v3
       valueFiles:
         - values.yaml
         - kibana-values.yaml
