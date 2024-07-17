@@ -19,7 +19,9 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-
+secret:
+  enabled: true
+  password: "admin123" # generated randomly if not defined
 esConfig:
    elasticsearch.yml: |
       http.cors.enabled: true
