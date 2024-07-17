@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitlab
+  namespace: argocd
+spec:
+  destination:
+    namespace: gitlab
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: devops/gitlab/manifests
+    repoURL: https://jihulab.com/devopsvvip/myiac.git
+    targetRevision: main
+    directory:
+      recurse: false
+  syncPolicy:
+    automated: 
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
