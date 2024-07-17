@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kibana
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://jihulab.com/devopsvvip/myiac.git
+    targetRevision: main
+    path: 'logging/kibana'
+    helm:
+      releaseName: kibana
+      valueFiles:
+        - values.yaml
+        - kibana-values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: 'logging'
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
