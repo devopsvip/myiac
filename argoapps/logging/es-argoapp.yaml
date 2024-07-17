@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: elasticsearch
       valueFiles:
-        - ./values/es-values.yaml
+        - logging/elasticsearch/values/es-values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: 'logging'
