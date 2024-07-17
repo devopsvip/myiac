@@ -82,7 +82,7 @@ config:
         Host elasticsearch-master
         Port 9200
         HTTP_User elastic
-        HTTP_Passwd fYC9UUf307Pdz4T9
+        HTTP_Passwd admin123
         tls On
         tls.verify Off
         Logstash_Format On
@@ -99,7 +99,7 @@ config:
         Host elasticsearch-master
         Port 9200
         HTTP_User elastic
-        HTTP_Passwd fYC9UUf307Pdz4T9
+        HTTP_Passwd admin123
         tls On
         tls.verify Off
         Logstash_Format On
