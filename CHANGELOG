@@ -1,3 +1,7 @@
 
 ## 2024-06-22
 - update docker images to tencent registry.
+
+
+## 2024-07-07
+- add skywalking platform deploy helm chart
