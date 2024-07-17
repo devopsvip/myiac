@@ -1,0 +1,30 @@
+replicas: 2
+minimumMasterNodes: 1
+image: "ccr.ccs.tencentyun.com/devopsvip/elasticsearch"
+imageTag: "8.5.1"
+ingress:
+  annotations: 
+    kubernetes.io/ingress.class: nginx
+    #kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+  className: ""
+  enabled: true
+  pathtype: ImplementationSpecific
+  hosts:
+    - host: es.idevops.site
+      paths:
+        - path: /
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+esConfig:
+   elasticsearch.yml: |
+       http.cors.enabled: true
+       http.cors.allow-origin: "*"
+       http.cors.allow-headers: Authorization,X-Requested-With,Content-Length,Content-Type
+       xpack.ml.enabled: false
+       xpack.security.enabled: true
+       xpack.security.transport.ssl.enabled: true

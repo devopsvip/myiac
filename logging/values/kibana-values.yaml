@@ -1,0 +1,17 @@
+replicas: 1
+image: "ccr.ccs.tencentyun.com/devopsvip/kibana"
+imageTag: "8.5.1"
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  className: ""
+  enabled: true
+  pathtype: Prefix
+  hosts:
+    - host: kibana.idevops.site
+      paths:
+        - path: /
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
