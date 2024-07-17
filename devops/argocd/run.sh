@@ -24,7 +24,7 @@ kind load  docker-image ccr.ccs.tencentyun.com/argocds/argocd:v2.6.7 --name devo
 kubectl create ns argocd
 kubectl -n argocd apply -f install.yaml
 kubectl -n argocd apply -f ingress.yaml
-sleep 3
+sleep 10
 kubectl -n argocd get pod 
 kubectl -n argocd get secret
 sleep 5
