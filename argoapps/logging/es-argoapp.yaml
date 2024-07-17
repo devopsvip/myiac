@@ -11,6 +11,7 @@ spec:
     path: 'logging/elasticsearch'
     helm:
       releaseName: elasticsearch
+      version: v3
       valueFiles:
         - values.yaml
         - es-values.yaml
