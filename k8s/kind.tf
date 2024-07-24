@@ -55,7 +55,27 @@ resource "kind_cluster" "default" {
           cgroupDriver: systemd
           cgroupRoot: /kubelet
           failSwapOn: false
+          ---
+          kind: ClusterConfiguration
+          etcd:
+            local:
+              extraArgs:
+                listen-metrics-urls: "http://0.0.0.0:2381"
+          ---
+          kind: ClusterConfiguration
+          controllerManager:
+            extraArgs:
+              bind-address: "0.0.0.0"
+          ---
+          kind: ClusterConfiguration
+          scheduler:
+            extraArgs:
+              bind-address: "0.0.0.0"
+          ---
+          kind: KubeProxyConfiguration
+          metricsBindAddress: "0.0.0.0:10249"
         EOT
+
       ]
 
       extra_port_mappings {
