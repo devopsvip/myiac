@@ -1,12 +1,13 @@
 
 ## Version info 
 
-### perpare tools
+### Pre-installed tools
 | Name      | Version  | 
 |-----------|-----|
 | Docker  | 20.10.10  |
 | Kind | 1.24.0   | 
 | Terraform | 1.1.8 |
+| kubectl | 1.24.0 |
 
 
 ### Infrastructure
