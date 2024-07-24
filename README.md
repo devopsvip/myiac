@@ -32,7 +32,7 @@
 ### Monitoring Applications
 | Name      | Version  | Domain   |
 |-----------|-----|---------------|
-| Grafana  | 11.1.0 | ![grafana.idevops.site](http://grafana.idevops.site)  |
+| Grafana  | 11.1.0 | [grafana.idevops.site](http://grafana.idevops.site)  |
 | Prometheus | v0.75.1 | ![prometheus.idevops.site](http://prometheus.idevops.site)|
 | Alertmanager  | v0.27.0  | ![alertmanager.idevops.site](http://alertmanage.idevops.site)  |
 | node-exporter  | v1.8.1  |  |
