@@ -1,0 +1,87 @@
+alertmanager:
+  enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - alertmanager.idevops.site
+    path: /
+  alertmanagerSpec:
+    image:
+      registry: ccr.ccs.tencentyun.com
+      repository: devopsvip/alertmanager
+      tag: v0.27.0
+      sha: ""
+grafana:
+  enabled: true
+  adminPassword: grafana
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - grafana.idevops.site
+    path: /
+  image:
+    registry: ccr.ccs.tencentyun.com
+    repository: devopsvip/grafana
+    tag: "11.1.0"
+    sha: ""
+    pullPolicy: IfNotPresent
+  sidecar:
+    image:
+      registry: ccr.ccs.tencentyun.com
+      repository: devopsvip/k8s-sidecar
+      tag: "1.26.1"
+      sha: ""
+  imagePullPolicy: IfNotPresent
+prometheusOperator:
+  admissionWebhooks:
+    patch:
+      enabled: true
+      image:
+        registry: ccr.ccs.tencentyun.com
+        repository: devopsvip/kube-webhook-certgen
+        tag: v20221220-controller-v1.5.1-58-g787ea74b6
+        sha: ""
+        pullPolicy: IfNotPresent
+  image:
+    registry: quay.io
+    repository: prometheus-operator/prometheus-operator
+    tag: "v0.75.1"
+    sha: ""
+    pullPolicy: IfNotPresent
+  prometheusConfigReloader:
+    image:
+      registry: ccr.ccs.tencentyun.com
+      repository: devopsvip/prometheus-config-reloader
+      # if not set appVersion field from Chart.yaml is used
+      tag: "v0.75.1"
+      sha: ""
+kube-state-metrics:
+  image:
+    registry: ccr.ccs.tencentyun.com
+    repository: devopsvip/kube-state-metrics
+    # If unset use v + .Charts.appVersion
+    tag: "v2.12.0"
+    sha: ""
+    pullPolicy: IfNotPresent
+prometheus-node-exporter:
+  image:
+    registry: ccr.ccs.tencentyun.com
+    repository: devopsvip/node-exporter
+    # Overrides the image tag whose default is {{ printf "v%s" .Chart.AppVersion }}
+    tag: "v1.8.1"
+    pullPolicy: IfNotPresent
+    digest: ""
+prometheus:
+  enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - prometheus.idevops.site
+    path: /
+
