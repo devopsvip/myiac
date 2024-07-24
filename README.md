@@ -27,6 +27,7 @@
 | Jenkins Agent | latest-jdk11 | inbound-agent |
 | SonarQube | 9.9.0-community | [sonar.idevops.site](http://sonar.idevops.site) |
 | Nexus | 3.60.0 | [nexus.idevops.site](http://nexus.idevops.site) |
+| Registry  | Tencent TCR | [console.cloud.tencent.com/tcr/repository](https://console.cloud.tencent.com/tcr/repository)|
 
 ### Logging Applications
 
