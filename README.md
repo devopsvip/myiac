@@ -1,20 +1,20 @@
-
+<img width="58" height="30" alt="image" src="https://github.com/user-attachments/assets/b26062f2-3267-4bc9-aa49-ca51a6e32028" />
 ## Version info 
 
 ### Pre-installed tools
 | Name      | Version  | 
 |-----------|-----|
 | Docker  | 20.10.10  |
-| Kind | 1.24.0   | 
-| Terraform | 1.1.8 |
-| kubectl | 1.24.0 |
+| Kind | 0.30.0   | 
+| Terraform | 1.13.4|
+| kubectl | 1.34.0 |
 
 
 ### Infrastructure
 
 | Name      | Version  | Details   |
 |-----------|-----|---------------|
-| Kubernetes  | 1.24.0  | ready  |
+| Kubernetes  | 1.34.0  | ready  |
 | NFS Storage | 2.3.3   | 192.168.1.200 /etc/exports context: /data/storage/kubernetes *(rw,no_root_squash,no_all_squash,sync)  |
 
 ### DevOps Applications
